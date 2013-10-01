@@ -1,3 +1,3 @@
-module Biburi
+module BibURI
   VERSION = "0.0.1"
 end

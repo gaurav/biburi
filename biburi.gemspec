@@ -5,7 +5,7 @@ require 'biburi/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "biburi"
-  spec.version       = Biburi::VERSION
+  spec.version       = BibURI::VERSION
   spec.authors       = ["Gaurav Vaidya"]
   spec.email         = ["gaurav@ggvaidya.com"]
   spec.description   = %q{Find the BibTeX information when your citation has an identifier}
@@ -20,4 +20,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec-core"
 end
