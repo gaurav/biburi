@@ -5,8 +5,7 @@ require 'rake'
 # Set up Rspec
 require 'rspec/core/rake_task'
 
+# Allow testing using spec
 RSpec::Core::RakeTask.new(:spec)
 task :default => :spec
-
-# Set up Rcov
-RSpec::Core::RakeTask.new(:rcov)
+task :test => :spec
