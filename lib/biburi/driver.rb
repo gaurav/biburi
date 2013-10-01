@@ -21,7 +21,7 @@ module BibURI::Driver
 
   # Returns true if this Lookup supports this id.
   def self.supported?(id)
-    return not(canonical(id).nil?)
+    raise NotImplementedError
   end
 
   # Returns a canonical form of the identifier,
@@ -33,7 +33,7 @@ module BibURI::Driver
   # Returns a dictionary of parsed values with
   # BibTeX names by looking up the provided id.
   def self.lookup(id)
-    nil
+    raise NotImplementedError
   end
  
 end

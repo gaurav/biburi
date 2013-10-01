@@ -16,3 +16,11 @@ describe BibURI do
         end
     end
 end
+
+describe BibURI::Driver do
+    it "should return NotImplementedError for all methods" do
+        expect { BibURI::Driver::supported?("doi:10.1038/171737a0") }.to raise_error(NotImplementedError)
+        expect { BibURI::Driver::canonical("doi:10.1038/171737a0") }.to raise_error(NotImplementedError)
+        expect { BibURI::Driver::lookup("doi:10.1038/171737a0") }.to raise_error(NotImplementedError)
+    end
+end
