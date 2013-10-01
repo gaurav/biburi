@@ -34,7 +34,7 @@ BibURI mainly works out of a single method:
 
     results = BibURI::lookup('doi:10.1038/171737a0')
 
-Full documentation is [available online at RubyDoc.info](http://rubydoc.org/github/gaurav/biburi/master/frames).
+Full documentation is [available online at RubyDoc.org](http://rubydoc.org/github/gaurav/biburi/master/frames).
 
 ## Contributing
 
