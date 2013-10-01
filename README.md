@@ -1,5 +1,10 @@
 # BibURI
 
+[![Continuous Integration Status][1]][2]
+[![Coverage Status][3]][4]
+[![CodePolice][5]][6]
+[![Dependency Status][7]][8]
+
 This is a gem to extract BibTeX information for URIs which refer to bibliographic
 resources, such as DOIs, Biodiversity Heritage Library links, and others.
 
@@ -32,3 +37,12 @@ TODO
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new pull request
+
+[1]: https://secure.travis-ci.org/gaurav/biburi.png
+[2]: http://travis-ci.org/gaurav/biburi
+[3]: https://coveralls.io/repos/gaurav/biburi/badge.png?branch=master
+[4]: https://coveralls.io/r/gaurav/biburi?branch=master
+[5]: https://codeclimate.com/github/gaurav/biburi.png
+[6]: https://codeclimate.com/github/gaurav/biburi
+[7]: https://gemnasium.com/gaurav/biburi.png
+[8]: https://gemnasium.com/gaurav/biburi
