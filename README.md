@@ -28,11 +28,13 @@ Or install it yourself as:
 
 ## Usage
 
-BibURI provides a single method:
+BibURI mainly works out of a single method:
 
     require 'biburi'
 
     results = BibURI::lookup('doi:10.1038/171737a0')
+
+Full documentation is [available online at RubyDoc.info](http://rubydoc.org/github/gaurav/biburi/master/frames).
 
 ## Contributing
 
