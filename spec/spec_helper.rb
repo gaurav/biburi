@@ -1,5 +1,5 @@
 # Start coverage tracking.
-require 'simplecov'
-SimpleCov.start
+require 'coveralls'
+Coveralls.wear!
 
 require_relative '../lib/biburi'
