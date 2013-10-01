@@ -9,14 +9,14 @@ module BibURI::Driver::DOI
   # http://dx.doi.org/10.1234/abcd-5678
   def self.canonical(id)
     # Might be 'doi:...'
-    match = id =~ /^doi:(?<doi>.*)$/
+    match = id.match(/^doi:(.*)$/)
     if match
-        return "http://dx.doi.org/#{match[:doi]}"
+        return "http://dx.doi.org/" + match[1]
     end
 
-    match = id =~ /^https?:\/\/dx\.doi\.org\/(?<doi>.*)$/
+    match = id.match(/^http:\/\/dx\.doi\.org\/(.*)$/)
     if match
-        return "http://dx.doi.org/#{match[:doi]}"
+        return "http://dx.doi.org/" + match[1]
     end
 
     # If no match, return nil.
