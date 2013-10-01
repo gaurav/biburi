@@ -28,7 +28,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO
+BibURI provides a single method:
+
+    require 'biburi'
+
+    results = BibURI::lookup('doi:10.1038/171737a0')
 
 ## Contributing
 
