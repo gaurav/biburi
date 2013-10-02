@@ -28,8 +28,8 @@ module BibURI::Driver::DOI
   end
 
   # The canonical form of a DOI can be one of
-  #  - http://dx.doi.org/10.1234/abcd-5678
-  #  - doi:10.1234/abcd-5678
+  # - http://dx.doi.org/10.1234/abcd-5678
+  # - doi:10.1234/abcd-5678
   def self.canonical(id)
     # doi:10.1234/abcd-5678
     match = id.match(/^doi:(.*)$/i)
