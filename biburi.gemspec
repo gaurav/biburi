@@ -24,5 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec-core"
   spec.add_development_dependency "coveralls"
 
-  spec.add_runtime_dependency 'bibtex', '~> 2.0'
+  spec.add_runtime_dependency 'bibtex-ruby', '~> 2.0'
 end
