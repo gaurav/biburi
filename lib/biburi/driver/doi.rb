@@ -105,7 +105,23 @@ module BibURI::Driver::DOI
             end
 
             # COinS values are explained at http://ocoins.info/cobg.html
-            # Some values need to be handled separately.
+            # and in http://ocoins.info/cobgbook.html.
+
+            # COinS supports some types
+            genre = metadata['rft.genre']
+            if genre == 'article' then
+                bibentry.type = "article"
+            elsif genre == 'book' then
+                bibentry.type = "book"
+            elsif genre == 'bookitem' then
+                bibentry.type = "inbook"
+            elsif genre == 'proceeding' then
+                bibentry.type = "proceedings"
+            elsif genre == 'conference' then
+                bibentry.type = "inproceedings"
+            elsif genre == 'report' then
+                bibentry.type = "techreport"
+            end 
             
             # Journal title: title, jtitle
             journal_title = metadata['rft.title']       # The old-style journal title.
@@ -113,9 +129,18 @@ module BibURI::Driver::DOI
             journal_title ||= metadata['rft.jtitle']    # Complete title.
             bibentry[:journal] = journal_title
 
+            # Book title: btitle
+            if metadata.key?('rft.btitle')
+                if journal_title
+                    bibentry[:booktitle] = metadata['rft.btitle']
+                else
+                    bibentry[:title] = metadata['rft.btitle']
+                end
+            end
+
             # Pages: spage, epage
             pages = metadata['rft.pages']       # If only pages are provided
-            pages ||= metadata['rft.spage'] + "-" + metadata['rft.epage']
+            pages ||= metadata['rft.spage'] + "--" + metadata['rft.epage']
                                             # If we have start and end pages
             bibentry[:pages] = pages
 
@@ -125,14 +150,6 @@ module BibURI::Driver::DOI
                 authors.add(BibTeX::Name.parse(author))
             end
             bibentry[:author] = authors
-
-            # COinS supports some types
-            genre = metadata['rft.genre']
-            if genre == 'article' then
-                bibentry.type = "article"
-            elsif genre == 'proceeding' || genre == 'conference' then
-                bibentry.type = "inproceeding"
-            end 
 
             # Map remaining fields to BibTeX.
             standard_mappings = {
@@ -150,7 +167,15 @@ module BibURI::Driver::DOI
                 "rft.ssn" =>        "season",
                 "rft.quarter" =>    "quarter",
                 "rft.part" =>       "part",
+
+                "rft.place" =>      "address",
+                "rft.pub" =>        "publisher",
+                "rft.edition" =>    "edition",
+                "rft.tpages" =>     "total_pages",
+                "rft.series" =>     "series",
+                "rft.bici" =>       "bici"
             }
+
             standard_mappings.keys.each do |field|
                 if metadata.key?(field) then
                     bibentry[standard_mappings[field]] = metadata[field]

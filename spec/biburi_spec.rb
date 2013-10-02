@@ -23,7 +23,7 @@ describe BibURI do
                     BibTeX::Entry.new(
                         :url => "http://dx.doi.org/10.1038/171737a0", 
                         :doi => "10.1038/171737a0",
-                        :title => "Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid, year = 1953, journal = Nature, pages = 737-738", 
+                        :title => "Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid, year = 1953, journal = Nature, pages = 737--738", 
                         :author => "WATSON, J. D. and CRICK, F. H. C.", 
                         :date => "1953",
                         :volume => "171", 
@@ -37,7 +37,7 @@ describe BibURI do
                         "title" => "SequenceMatrix: concatenation software for the fast assembly of multi-gene datasets with character set and codon information",
                         "year" => "2011",
                         "journal" => "Cladistics", 
-                        "pages" => "171-180",
+                        "pages" => "171--180",
                         "author" => "Vaidya, Gaurav and Lohman, David J. and Meier, Rudolf",
                         "date" => "2011",
                         "volume" => "27", 
