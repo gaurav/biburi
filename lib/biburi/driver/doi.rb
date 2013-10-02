@@ -81,6 +81,7 @@ module BibURI::Driver::DOI
 
         # Set identifiers so we know where this came from.
         bibentry[:url] = canonical_id
+        bibentry[:identifiers] = [canonical_id]
         bibentry[:doi] = canonical_id.match(/^http:\/\/dx\.doi\.org\/(.*)$/)[1]
 
         # CrossRef itself provides a full citation and year.
@@ -106,6 +107,9 @@ module BibURI::Driver::DOI
 
             # COinS values are explained at http://ocoins.info/cobg.html
             # and in http://ocoins.info/cobgbook.html.
+
+            # Add ALL the identifiers.
+            bibentry[:identifiers].push(metadata['rft_id'])
 
             # COinS supports some types
             genre = metadata['rft.genre']
