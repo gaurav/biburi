@@ -44,6 +44,17 @@ Full documentation is [available online at RubyDoc.org](http://rubydoc.org/githu
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new pull request
 
+## Pushing to RubyGems
+
+(from http://stackoverflow.com/questions/7196489/using-bundlers-rake-release-with-git-flow)
+
+1. git flow release start 0.0.9
+2. ...
+3. git flow release finish -n 0.0.9
+4. git checkout master
+5. rake release
+6. git checkout develop
+
 [1]: https://secure.travis-ci.org/gaurav/biburi.png
 [2]: http://travis-ci.org/gaurav/biburi
 [3]: https://coveralls.io/repos/gaurav/biburi/badge.png?branch=master
