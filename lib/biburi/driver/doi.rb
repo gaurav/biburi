@@ -1,26 +1,43 @@
+# A driver to read BibTeX for DOI via CrossRef's
+# public API: http://search.crossref.org/help/api
+#
+# Author:: Gaurav Vaidya
+# Copyright:: Copyright (c) 2013 Gaurav Vaidya
+# License:: MIT
+
 require 'biburi'
 require 'biburi/driver'
 require 'net/http'
 require 'json'
 require 'bibtex'
+ 
+# For CGI::parse to make sense of COinS
+require 'cgi'
+
+# This driver provides information in BibTeX on a DOI by
+# querying CrossRef's metadata search API. 
 
 module BibURI::Driver::DOI
   include BibURI::Driver
 
+  # We support an identifier if we can make them look
+  # canonical.
   def self.supported?(id)
     canonical = BibURI::Driver::DOI::canonical(id)
     return !(canonical.nil?)
   end
 
-  # The canonical form of a DOI is:
-  # http://dx.doi.org/10.1234/abcd-5678
+  # The canonical form of a DOI can be one of
+  #  - http://dx.doi.org/10.1234/abcd-5678
+  #  - doi:10.1234/abcd-5678
   def self.canonical(id)
-    # Might be 'doi:...'
+    # doi:10.1234/abcd-5678
     match = id.match(/^doi:(.*)$/i)
     if match
         return "http://dx.doi.org/" + match[1]
     end
 
+    # http://dx.doi.org/10.1234/abcd-5678
     match = id.match(/^http:\/\/dx\.doi\.org\/(.*)$/i)
     if match
         return "http://dx.doi.org/" + match[1]
@@ -33,23 +50,27 @@ module BibURI::Driver::DOI
   # Returns a list of parsed values with
   # BibTeX names by looking up the provided id.
   def self.lookup(id)
+    # Calculate the canonical identifier.
     canonical_id = canonical(id)
     if canonical_id.nil? then
         return nil
     end
 
+    # Search for the DOI on CrossRef.
     crossref_url = "http://search.crossref.org/dois?" + 
         URI.encode_www_form([["q", canonical_id]])
 
     content = Net::HTTP.get(URI(crossref_url))
     as_json = JSON.parse(content)
 
+    # No values returned? Returned nil so that the search
+    # can continue.
     if as_json.length == 0 then
-        # No values returned? Returned nil so that the search
-        # can continue.
         return nil
     end
 
+    # Go through results and format them as BibTeX::Entry.
+    # We support both 
     results = [] unless block_given?
     as_json.each do |match|
         # Skip non-identical DOI matches.
@@ -62,7 +83,7 @@ module BibURI::Driver::DOI
         bibentry[:url] = canonical_id
         bibentry[:doi] = canonical_id.match(/^http:\/\/dx\.doi\.org\/(.*)$/)[1]
 
-        # Set up from values from CrossRef.
+        # CrossRef itself provides a full citation and year.
         if match.key?('fullCitation') then
             bibentry[:title] = match['fullCitation']
         end
@@ -71,7 +92,7 @@ module BibURI::Driver::DOI
             bibentry[:year] = match['year'] 
         end
         
-        # If we have COinS data, we're in business.
+        # If we have COinS data, we have a lot more data.
         if match.key?('coins') then
             coins_kv = CGI::parse(match['coins'])
             metadata = {}
@@ -101,17 +122,7 @@ module BibURI::Driver::DOI
             # Authors are all in 'rft.au'
             authors = BibTeX::Names.new
             metadata['rft.au'].each do |author|
-                # if author.aufirst then 
-                #    authors.add(BibTeX::Name.new({
-                #        :first => author.aufirst,
-                #        :last => author.aulast,
-                #        :suffix => author.ausuffix
-                #    }))
-                #elsif author.aucorp then
-                #    authors.add(author.aucorp)
-                #else
                 authors.add(BibTeX::Name.parse(author))
-                #end
             end
             bibentry[:author] = authors
 
@@ -155,6 +166,7 @@ module BibURI::Driver::DOI
         end 
     end
 
+    # If we built an array, return it.
     unless block_given? then
         return results
     end
