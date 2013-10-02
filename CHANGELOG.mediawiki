@@ -1,0 +1,4 @@
+= BibURI Changelog =
+
+* 0.0.1 (October 2, 2013)
+** First release, with basic support for DOIs using the CrossRef API.
