@@ -52,13 +52,13 @@ describe BibURI::Driver::DOI do
                         :journal => "Nature",
                         :pages => "737--738",
                         :author => "WATSON, J. D. and CRICK, F. H. C.", 
-                        :title => "Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid", 
                         :date => "1953",
+                        :year => "1953",
+                        :title => "Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid", 
                         :volume => "171", 
                         :number => "4356",
                         :url => "http://dx.doi.org/10.1038/171737a0",
-                        :doi => "10.1038/171737a0",
-                        :year => "1953"
+                        :doi => "10.1038/171737a0"
                     )
                 ]
             }

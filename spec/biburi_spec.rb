@@ -25,13 +25,13 @@ describe BibURI do
                         :journal => "Nature",
                         :pages => "737--738",
                         :author => "WATSON, J. D. and CRICK, F. H. C.", 
-                        :title => "Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid", 
                         :date => "1953",
+                        :year => "1953",
+                        :title => "Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid", 
                         :volume => "171", 
                         :number => "4356",
                         :url => "http://dx.doi.org/10.1038/171737a0",
                         :doi => "10.1038/171737a0",
-                        :year => "1953"
                     )
                 ],
                 "http://dx.doi.org/10.1111/j.1096-0031.2010.00329.x" => [
@@ -40,13 +40,13 @@ describe BibURI do
                         "journal" => "Cladistics", 
                         "pages" => "171--180",
                         "author" => "Vaidya, Gaurav and Lohman, David J. and Meier, Rudolf",
-                        "title" => "SequenceMatrix: concatenation software for the fast assembly of multi-gene datasets with character set and codon information",
                         "date" => "2011",
+                        "year" => "2011",
+                        "title" => "SequenceMatrix: concatenation software for the fast assembly of multi-gene datasets with character set and codon information",
                         "volume" => "27", 
                         "number" => "2",
                         "url" => "http://dx.doi.org/10.1111/j.1096-0031.2010.00329.x",
                         "doi" => "10.1111/j.1096-0031.2010.00329.x",
-                        "year" => "2011"
                     })
                 ]
             }
@@ -66,8 +66,9 @@ describe BibURI do
                         :journal => "Society", 
                         :pages => "105", 
                         :author => "Kinchloe Roberts, A and Smith, D M and Guralnick, R P and Cushing, P E and Krieger, J",
-                        :title => "An outline morphometric approach to identifying fossil spiders: A preliminary examination from the Florissant Formation",
                         :date => "2008", 
+                        :year => "2008",
+                        :title => "An outline morphometric approach to identifying fossil spiders: A preliminary examination from the Florissant Formation",
                         :volume => "435", 
                         :number => "303", 
                         :url => "http://www.mendeley.com/research/outline-morphometric-approach-identifying-fossil-spiders-preliminary-examination-florissant-formation/",
@@ -78,10 +79,11 @@ describe BibURI do
                     BibTeX::Entry.new(
                         :identifiers => "info:doi/10.1080/14772001003739369 http://www.mendeley.com/catalog/big-questions-biodiversity-informatics/",
                         :journal => "Systematics and Biodiversity",
-                        :pages => "159-168",
+                        :pages => "159--168",
                         :author => "Peterson, A Townsend and Knapp, Sandra and Guralnick, Robert and Soberón, Jorge and Holder, Mark T",
-                        :title => "The big questions for biodiversity informatics",
                         :date => "2010",
+                        :year => "2010",
+                        :title => "The big questions for biodiversity informatics",
                         :volume => "8",
                         :number => "2",
                         :issn => "14772000",
@@ -93,13 +95,45 @@ describe BibURI do
                     BibTeX::Entry.new(
                         :identifiers => "info:pmid/19129210 http://www.mendeley.com/catalog/biodiversity-informatics-automated-approaches-documenting-global-biodiversity-patterns-processes/",
                         :journal => "Bioinformatics",
-                        :pages => "421-428",
+                        :pages => "421--428",
                         :author => "Guralnick, Robert and Hill, Andrew",
-                        :title => "Biodiversity informatics: automated approaches for documenting global biodiversity patterns and processes.",
                         :date => "2009",
+                        :year => "2009",
+                        :title => "Biodiversity informatics: automated approaches for documenting global biodiversity patterns and processes.",
                         :volume => "25",
                         :number => "4",
                         :url => "http://www.mendeley.com/catalog/biodiversity-informatics-automated-approaches-documenting-global-biodiversity-patterns-processes/"
+                    )
+                ],
+                "http://www.mendeley.com/research/hs-2-w-estern-o-ffshoots-1500-2001-australia-canada-new-zealand-united-states/" => [
+                    BibTeX::Entry.new(
+                        :journal => "Work",
+                        :pages => "71--90",
+                        :author => "Offshoots, Western",
+                        :date => "2001",
+                        :year => "2001",
+                        :title => "HS – 2 : W ESTERN O FFSHOOTS : 1500 – 2001 ( Australia , Canada , New Zealand , and the United States )",
+                        :volume => "2001",
+                        :isbn => "9264022619",
+                        :url => "http://www.mendeley.com/research/hs-2-w-estern-o-ffshoots-1500-2001-australia-canada-new-zealand-united-states/",
+                        :identifiers => "http://www.mendeley.com/research/hs-2-w-estern-o-ffshoots-1500-2001-australia-canada-new-zealand-united-states/"
+                    )
+                ],
+                "http://www.citeulike.org/user/bjbraams/article/12683220" => [
+                    BibTeX::Entry.new(
+                        :identifiers => "info:doi/10.1016/s0009-2614(02)00988-0\nhttp://www.citeulike.org/user/bjbraams/article/12683220",
+                        :journal => "Chemical Physics Letters",
+                        :pages => "520--524",
+                        :author => "Scemama, Anthony and Chaquin, Patrick and Gazeau, Marie-Claire and Bénilan, Yves",
+                        :date => "2002-8",
+                        :year => "2002",
+                        :month => "8",
+                        :title => "Semi-empirical calculation of electronic absorption wavelengths of polyynes, monocyano- and dicyanopolyynes. Predictions for long chain compounds and carbon allotrope carbyne",
+                        :volume => "361",
+                        :number => "5-6",
+                        :issn => "00092614",
+                        :url => "http://www.citeulike.org/user/bjbraams/article/12683220",
+                        :doi => "10.1016/s0009-2614(02)00988-0"
                     )
                 ]
             }

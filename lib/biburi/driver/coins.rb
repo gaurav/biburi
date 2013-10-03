@@ -99,7 +99,6 @@ module BibURI::Driver::COinS
                 bibentry[:doi] = match[1] 
             end
         end
-        bibentry[:doi] = 
 
         # Yield values or return array.
         if block_given? then
@@ -134,8 +133,17 @@ module BibURI::Driver::COinS
     # COinS values are explained at http://ocoins.info/cobg.html
     # and in http://ocoins.info/cobgbook.html.
 
+    # If we're not Z3988-2004, skip out.
+    ctx_ver = metadata['ctx_ver']
+    if ctx_ver != 'Z39.88-2004' then
+        ctx_ver = "" if ctx_ver.nil?
+        raise "ctx_ver is: '#{ctx_ver}'"
+    end
+
     # Add ALL the identifiers.
-    bibentry[:identifiers] = metadata['rft_id']
+    identifiers = []
+    identifiers.push(metadata['rft_id']) if metadata.key?('rft_id')
+    bibentry[:identifiers] = identifiers unless identifiers.flatten.length == 0
 
     # COinS supports some types
     genre = metadata['rft.genre']
@@ -170,6 +178,10 @@ module BibURI::Driver::COinS
 
     # Pages: spage, epage
     pages = metadata['rft.pages']       # If only pages are provided
+
+    # Expand a single dash to a BibTeX-y double-dash.
+    pages.gsub!(/([^\-])\-([^\-])/, '\1--\2') unless pages.nil?
+
     pages ||= metadata['rft.spage'] + "--" + metadata['rft.epage']
                                     # If we have start and end pages
     bibentry[:pages] = pages
@@ -178,7 +190,7 @@ module BibURI::Driver::COinS
     authors = []
     metadata['rft.au'] = [ metadata['rft.au'] ] unless metadata['rft.au'].kind_of?(Array)
     metadata['rft.au'].each do |author|
-        authors.push(BibTeX::Name.parse(author))
+        authors.push(BibTeX::Name.parse(author)) unless author.nil?
     end
 
     # However! Sometimes a name is in aufirst/aulast
@@ -200,10 +212,30 @@ module BibURI::Driver::COinS
 
     bibentry[:author] = BibTeX::Names.new(authors)
 
+    # Dates. 
+    date = metadata['rft.date']
+    bibentry[:date] = date
+
+    # Citeulike dates are easy to parse. 
+    unless date.nil? then
+        if match = date.match(/^(\d{4})$/) then
+            bibentry[:year] = match[1] 
+
+        elsif match = date.match(/^(\d{4})-(\d{1,2})$/) then
+            bibentry[:year] = match[1] 
+            bibentry[:month] = match[2] 
+
+        elsif match = date.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/) then
+            bibentry[:year] = match[1] 
+            bibentry[:month] = match[2] 
+            bibentry[:day] = match[3] 
+
+        end
+    end
+
     # Map remaining fields to BibTeX.
     standard_mappings = {
         "rft.atitle" =>     "title",
-        "rft.date" =>       "date",
         "rft.volume" =>     "volume",
         "rft.issue" =>      "number",
         "rft.artnum" =>     "article_number",
