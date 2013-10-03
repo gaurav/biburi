@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "coveralls", "~> 0.7.0"
 
   spec.add_runtime_dependency 'bibtex-ruby', '~> 2.3.4'
+  spec.add_runtime_dependency 'nokogiri', '~> 1.6.0'
 end

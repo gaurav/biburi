@@ -41,10 +41,12 @@ end
 # Load all the drivers, and add them to BibURI::Driver
 # in order of preference.
 require "biburi/driver/doi"
+require "biburi/driver/coins"
 
 module BibURI::Driver
   @@drivers = [
-    BibURI::Driver::DOI
+    BibURI::Driver::DOI,
+    BibURI::Driver::COinS
   ]
 end
 
