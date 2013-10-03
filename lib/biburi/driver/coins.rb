@@ -26,7 +26,7 @@ module BibURI::Driver::COinS
   # We support an identifier if we can make them look
   # canonical.
   def self.supported?(id)
-    canonical = BibURI::Driver::DOI::canonical(id)
+    canonical = self.canonical(id)
     return !(canonical.nil?)
   end
 
@@ -56,7 +56,7 @@ module BibURI::Driver::COinS
   # or to pull in all entries.
   def self.lookup(id)
     self.lookup_all(id) do |first_only|
-      return first_only
+      return [first_only]
     end
   end
    
@@ -81,12 +81,25 @@ module BibURI::Driver::COinS
         
     spans.each do |span|
         coins = span['title']
+
         bibentry = self.coins_to_bibtex(coins)
 
         # Set identifiers so we know where this came from.
-        bibentry[:url] = canonical_id
-        bibentry[:identifiers] = [canonical_id]
-        bibentry[:doi] = canonical_id.match(/^http:\/\/dx\.doi\.org\/(.*)$/)[1]
+        bibentry[:url] = url
+
+        identifiers = Array.new
+        identifiers.push(bibentry[:identifiers]).flatten! if bibentry.field?('identifiers')
+        identifiers.push(url)
+        bibentry.add(:identifiers, identifiers.join("\n"))
+
+        # See if we have a DOI.
+        identifiers.each do |identifier|
+            match = identifier.match(/^(?:http:\/\/dx\.doi\.org\/|doi:|info:doi\/)(.*)$/i) 
+            if match then
+                bibentry[:doi] = match[1] 
+            end
+        end
+        bibentry[:doi] = 
 
         # Yield values or return array.
         if block_given? then
@@ -162,11 +175,30 @@ module BibURI::Driver::COinS
     bibentry[:pages] = pages
 
     # Authors are all in 'rft.au'
-    authors = BibTeX::Names.new
+    authors = []
+    metadata['rft.au'] = [ metadata['rft.au'] ] unless metadata['rft.au'].kind_of?(Array)
     metadata['rft.au'].each do |author|
-        authors.add(BibTeX::Name.parse(author))
+        authors.push(BibTeX::Name.parse(author))
     end
-    bibentry[:author] = authors
+
+    # However! Sometimes a name is in aufirst/aulast
+    # and also in au; and sometimes it's only in aufirst/aulast.
+    first_author = BibTeX::Name.new
+    first_author.last = metadata['rft.aulast']
+    first_author.suffix = metadata['rft.ausuffix'] if metadata.key?('rft.ausuffix')
+    if metadata.key?('rft.aufirst') then
+        first_author.first = metadata['rft.aufirst']
+    elsif metadata.key?('rft.auinit') then
+        first_author.first = metadata['rft.auinit']
+    elsif 
+        first_author.first = metadata['rft.auinit1']
+        first_author.first += " " + metadata['rftinitm'] if metadata.key?('rftinitm')
+    end
+    if !authors.include?(first_author) then
+        authors.unshift(first_author)
+    end
+
+    bibentry[:author] = BibTeX::Names.new(authors)
 
     # Map remaining fields to BibTeX.
     standard_mappings = {
