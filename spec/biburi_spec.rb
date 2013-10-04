@@ -21,8 +21,9 @@ describe BibURI do
     describe "lookup" do
         it "should be able to do DOI lookups" do
             queries = {
-                "doi:10.1038/171737a0" => [
+                "doi:10.1038/171737a0" =>
                     BibTeX::Entry.new(
+                        :type => 'article',
                         :identifiers => "info:doi/http://dx.doi.org/10.1038/171737a0\nhttp://dx.doi.org/10.1038/171737a0",
                         :journal => "Nature",
                         :pages => "737--738",
@@ -34,10 +35,10 @@ describe BibURI do
                         :number => "4356",
                         :url => "http://dx.doi.org/10.1038/171737a0",
                         :doi => "10.1038/171737a0",
-                    )
-                ],
-                "http://dx.doi.org/10.1111/j.1096-0031.2010.00329.x" => [
+                    ),
+                "http://dx.doi.org/10.1111/j.1096-0031.2010.00329.x" =>
                     BibTeX::Entry.new({
+                        :type => 'article',
                         "identifiers" => "info:doi/http://dx.doi.org/10.1111/j.1096-0031.2010.00329.x\nhttp://dx.doi.org/10.1111/j.1096-0031.2010.00329.x",
                         "journal" => "Cladistics", 
                         "pages" => "171--180",
@@ -50,7 +51,6 @@ describe BibURI do
                         "url" => "http://dx.doi.org/10.1111/j.1096-0031.2010.00329.x",
                         "doi" => "10.1111/j.1096-0031.2010.00329.x",
                     })
-                ]
             }
 
             queries.keys.each do |query|
@@ -62,8 +62,9 @@ describe BibURI do
 
         it "should be able to do COinS lookups" do
             queries = {
-                "http://www.mendeley.com/research/outline-morphometric-approach-identifying-fossil-spiders-preliminary-examination-florissant-formation/" => [
+                "http://www.mendeley.com/research/outline-morphometric-approach-identifying-fossil-spiders-preliminary-examination-florissant-formation/" =>
                     BibTeX::Entry.new(
+                        :type => 'article',
                         :identifiers => "info:doi/10.1130/2008.2435(07).\nhttp://www.mendeley.com/research/outline-morphometric-approach-identifying-fossil-spiders-preliminary-examination-florissant-formation/",
                         :journal => "Society", 
                         :pages => "105", 
@@ -75,11 +76,11 @@ describe BibURI do
                         :number => "303", 
                         :url => "http://www.mendeley.com/research/outline-morphometric-approach-identifying-fossil-spiders-preliminary-examination-florissant-formation/",
                         :doi => "10.1130/2008.2435(07)." # This is wrong though
-                    )
-                ],
-                "http://www.mendeley.com/catalog/big-questions-biodiversity-informatics/" => [
+                    ),
+                "http://www.mendeley.com/catalog/big-questions-biodiversity-informatics/" =>
                     BibTeX::Entry.new(
-                        :identifiers => "info:doi/10.1080/14772001003739369 http://www.mendeley.com/catalog/big-questions-biodiversity-informatics/",
+                        :type => 'article',
+                        :identifiers => "info:doi/10.1080/14772001003739369\nhttp://www.mendeley.com/catalog/big-questions-biodiversity-informatics/",
                         :journal => "Systematics and Biodiversity",
                         :pages => "159--168",
                         :author => "Peterson, A Townsend and Knapp, Sandra and Guralnick, Robert and Soberón, Jorge and Holder, Mark T",
@@ -91,11 +92,11 @@ describe BibURI do
                         :issn => "14772000",
                         :url => "http://www.mendeley.com/catalog/big-questions-biodiversity-informatics/",
                         :doi => "10.1080/14772001003739369"
-                    )
-                ],
-                "http://www.mendeley.com/catalog/biodiversity-informatics-automated-approaches-documenting-global-biodiversity-patterns-processes/" => [
+                    ),
+                "http://www.mendeley.com/catalog/biodiversity-informatics-automated-approaches-documenting-global-biodiversity-patterns-processes/" => 
                     BibTeX::Entry.new(
-                        :identifiers => "info:pmid/19129210 http://www.mendeley.com/catalog/biodiversity-informatics-automated-approaches-documenting-global-biodiversity-patterns-processes/",
+                        :type => 'article',
+                        :identifiers => "info:pmid/19129210\nhttp://www.mendeley.com/catalog/biodiversity-informatics-automated-approaches-documenting-global-biodiversity-patterns-processes/",
                         :journal => "Bioinformatics",
                         :pages => "421--428",
                         :author => "Guralnick, Robert and Hill, Andrew",
@@ -105,10 +106,10 @@ describe BibURI do
                         :volume => "25",
                         :number => "4",
                         :url => "http://www.mendeley.com/catalog/biodiversity-informatics-automated-approaches-documenting-global-biodiversity-patterns-processes/"
-                    )
-                ],
-                "http://www.mendeley.com/research/hs-2-w-estern-o-ffshoots-1500-2001-australia-canada-new-zealand-united-states/" => [
+                    ),
+                "http://www.mendeley.com/research/hs-2-w-estern-o-ffshoots-1500-2001-australia-canada-new-zealand-united-states/" => 
                     BibTeX::Entry.new(
+                        :type => 'article',
                         :identifiers => "http://www.mendeley.com/research/hs-2-w-estern-o-ffshoots-1500-2001-australia-canada-new-zealand-united-states/",
                         :journal => "Work",
                         :pages => "71--90",
@@ -119,10 +120,10 @@ describe BibURI do
                         :volume => "2001",
                         :isbn => "9264022619",
                         :url => "http://www.mendeley.com/research/hs-2-w-estern-o-ffshoots-1500-2001-australia-canada-new-zealand-united-states/"
-                    )
-                ],
-                "http://www.citeulike.org/user/bjbraams/article/12683220" => [
+                    ),
+                "http://www.citeulike.org/user/bjbraams/article/12683220" => 
                     BibTeX::Entry.new(
+                        :type => 'article',
                         :identifiers => "info:doi/10.1016/s0009-2614(02)00988-0\nhttp://www.citeulike.org/user/bjbraams/article/12683220",
                         :journal => "Chemical Physics Letters",
                         :pages => "520--524",
@@ -136,16 +137,15 @@ describe BibURI do
                         :issn => "00092614",
                         :url => "http://www.citeulike.org/user/bjbraams/article/12683220",
                         :doi => "10.1016/s0009-2614(02)00988-0"
-                    )
-                ],
-                #"http://www.bioone.org/doi/abs/10.1642/0004-8038(2002)119%5B0897:FTSTTA%5D2.0.CO%3B2" => [
+                    ),
+                #"http://www.bioone.org/doi/abs/10.1642/0004-8038(2002)119%5B0897:FTSTTA%5D2.0.CO%3B2" => 
                 #    BibTeX::Entry.new(
                 #
-                #    )
-                #],
-                "http://www.biodiversitylibrary.org/part/87340#/summary" => [
+                #    ),
+                "http://www.biodiversitylibrary.org/part/87340#/summary" => 
                     BibTeX::Entry.new(
-                        :identifiers => "info:doi/10.2307/4067078 urn:ISSN:0004-8038 http://www.biodiversitylibrary.org/part/87340 http://www.biodiversitylibrary.org/part/87340#/summary",
+                        :type => 'article',
+                        :identifiers => "info:doi/10.2307/4067078\nurn:ISSN:0004-8038\nhttp://www.biodiversitylibrary.org/part/87340\nhttp://www.biodiversitylibrary.org/part/87340#/summary",
                         :journal => "The Auk",
                         :pages => "60--66",
                         :author => "Allen, J A and Brewster, William and Coues, Elliott and Ridgway, Robert and Sage, John H",
@@ -157,7 +157,6 @@ describe BibURI do
                         :url => "http://www.biodiversitylibrary.org/part/87340#/summary",
                         :doi => "10.2307/4067078"
                     )
-                ]
             }
 
             queries.keys.each do |query|

@@ -70,48 +70,38 @@ module BibURI::Driver::DOI
     # Go through results and format them as BibTeX::Entry.
     # We support both 
     results = [] unless block_given?
-    as_json.each do |match|
-        # Skip non-identical DOI matches.
-        next unless match['doi'].downcase == canonical_id.downcase
+    match = as_json.first
 
-        # Create a BibTeX entry to store these values.
-        bibentry = BibTeX::Entry.new
+    # Skip non-identical DOI matches.
+    return nil unless match['doi'].downcase == canonical_id.downcase
 
-        # Process any COinS content first, if any.
-        if match.key?('coins') then
-            bibentry = BibURI::Driver::COinS::coins_to_bibtex(match['coins'])
-        end
+    # Create a BibTeX entry to store these values.
+    bibentry = BibTeX::Entry.new
 
-        # Set identifiers so we know where this came from.
-        bibentry[:url] = canonical_id
-
-        identifiers = Array.new
-        identifiers.push(bibentry[:identifiers]).flatten! if bibentry.field?('identifiers')
-        identifiers.push(canonical_id)
-        bibentry.add(:identifiers, identifiers.join("\n"))
-
-        bibentry[:doi] = canonical_id.match(/^http:\/\/dx\.doi\.org\/(.*)$/)[1]
-
-        # CrossRef itself provides a full citation and year.
-        if !bibentry.has_field?('title') and match.key?('fullCitation') then
-            bibentry[:title] = match['fullCitation']
-        end
-
-        if !bibentry.has_field?('year') and match.key?('year') then
-            bibentry[:year] = match['year'] 
-        end
-        
-        # Yield values or return array.
-        if block_given? then
-            yield(bibentry)
-        else
-            results.push(bibentry)
-        end 
+    # Process any COinS content first, if any.
+    if match.key?('coins') then
+        bibentry = BibURI::Driver::COinS::coins_to_bibtex(match['coins'])
     end
 
-    # If we built an array, return it.
-    unless block_given? then
-        return results
+    # Set identifiers so we know where this came from.
+    bibentry[:url] = canonical_id
+
+    identifiers = bibentry[:identifiers].split("\n")
+    identifiers.push(canonical_id)
+    bibentry.add(:identifiers, identifiers.join("\n"))
+
+    bibentry[:doi] = canonical_id.match(/^http:\/\/dx\.doi\.org\/(.*)$/)[1]
+
+    # CrossRef itself provides a full citation and year.
+    if !bibentry.has_field?('title') and match.key?('fullCitation') then
+        bibentry[:title] = match['fullCitation']
     end
+
+    if !bibentry.has_field?('year') and match.key?('year') then
+        bibentry[:year] = match['year'] 
+    end
+    
+    # Yield values or return array.
+    return bibentry
   end
 end

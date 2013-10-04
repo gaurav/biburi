@@ -46,8 +46,9 @@ describe BibURI::Driver::DOI do
     describe "lookup" do
         it "should be able to download information on some DOIs" do
             queries = {
-                "doi:10.1038/171737a0" => [
+                "doi:10.1038/171737a0" =>
                     BibTeX::Entry.new(
+                        :type => 'article',
                         :identifiers => "info:doi/http://dx.doi.org/10.1038/171737a0\nhttp://dx.doi.org/10.1038/171737a0",
                         :journal => "Nature",
                         :pages => "737--738",
@@ -60,7 +61,6 @@ describe BibURI::Driver::DOI do
                         :url => "http://dx.doi.org/10.1038/171737a0",
                         :doi => "10.1038/171737a0"
                     )
-                ]
             }
 
             queries.keys.each do |query|

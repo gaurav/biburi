@@ -56,7 +56,7 @@ module BibURI::Driver::COinS
   # or to pull in all entries.
   def self.lookup(id)
     self.lookup_all(id) do |first_only|
-      return [first_only]
+      return first_only
     end
   end
    

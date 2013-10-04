@@ -19,10 +19,8 @@ module BibURI
   def self.lookup(id)
     self.drivers.each do |driver|
       if driver.supported?(id) then
-        results = driver.lookup(id)  
-        if !results.nil? then
-          return results
-        end
+        bibtex = driver.lookup(id)  
+        return bibtex unless bibtex.nil?
       end
     end
 
