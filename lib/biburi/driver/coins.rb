@@ -140,9 +140,14 @@ module BibURI::Driver::COinS
     end
 
     # Add ALL the identifiers.
-    identifiers = []
-    identifiers.push(metadata['rft_id']) if metadata.key?('rft_id')
-    bibentry[:identifiers] = identifiers.join("\n")
+    bibentry[:identifiers] = ""
+    if metadata.key?('rft_id') then
+        if metadata['rft_id'].kind_of?(Array) then
+            bibentry[:identifiers] = metadata['rft_id'].join("\n")
+        else
+            bibentry[:identifiers] = metadata['rft_id']
+        end
+    end
 
     # COinS supports some types
     genre = metadata['rft.genre']
