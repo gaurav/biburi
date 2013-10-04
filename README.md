@@ -3,7 +3,8 @@
 [![Gem Version](https://badge.fury.io/rb/biburi.png)](http://badge.fury.io/rb/biburi)
 [![Continuous Integration Status][1]][2]
 [![Coverage Status][3]][4]
-[![Dependency Status][5]][6]
+[![CodeClimate][5]][6]
+[![Dependency Status][7]][8]
 
 This is a gem to extract BibTeX information for URIs which refer to bibliographic
 resources, such as DOIs, Biodiversity Heritage Library links, and others.
@@ -11,6 +12,7 @@ resources, such as DOIs, Biodiversity Heritage Library links, and others.
 Currently, BibURI supports the following types of data:
 
  - DOIs (via CrossRef)
+ - Any web page containing one or more [COinS](http://ocoins.info/) spans.
 
 ## Installation
 
@@ -49,5 +51,7 @@ Full documentation is [available online at RubyDoc.org](http://rubydoc.org/githu
 [2]: http://travis-ci.org/gaurav/biburi
 [3]: https://coveralls.io/repos/gaurav/biburi/badge.png?branch=master
 [4]: https://coveralls.io/r/gaurav/biburi?branch=master
-[5]: https://gemnasium.com/gaurav/biburi.png
-[6]: https://gemnasium.com/gaurav/biburi
+[5]: https://codeclimate.com/github/gaurav/biburi.png?branch=master
+[6]: https://codeclimate.com/github/gaurav/biburi?branch=master
+[7]: https://gemnasium.com/gaurav/biburi.png
+[8]: https://gemnasium.com/gaurav/biburi
