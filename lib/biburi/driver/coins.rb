@@ -87,8 +87,7 @@ module BibURI::Driver::COinS
         # Set identifiers so we know where this came from.
         bibentry[:url] = url
 
-        identifiers = Array.new
-        identifiers.push(bibentry[:identifiers]).flatten! if bibentry.field?('identifiers')
+        identifiers = bibentry[:identifiers].split("\n")
         identifiers.push(url)
         bibentry.add(:identifiers, identifiers.join("\n"))
 
@@ -143,7 +142,7 @@ module BibURI::Driver::COinS
     # Add ALL the identifiers.
     identifiers = []
     identifiers.push(metadata['rft_id']) if metadata.key?('rft_id')
-    bibentry[:identifiers] = identifiers unless identifiers.flatten.length == 0
+    bibentry[:identifiers] = identifiers.join("\n")
 
     # COinS supports some types
     genre = metadata['rft.genre']

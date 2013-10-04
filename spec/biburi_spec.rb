@@ -107,6 +107,7 @@ describe BibURI do
                 ],
                 "http://www.mendeley.com/research/hs-2-w-estern-o-ffshoots-1500-2001-australia-canada-new-zealand-united-states/" => [
                     BibTeX::Entry.new(
+                        :identifiers => "http://www.mendeley.com/research/hs-2-w-estern-o-ffshoots-1500-2001-australia-canada-new-zealand-united-states/",
                         :journal => "Work",
                         :pages => "71--90",
                         :author => "Offshoots, Western",
@@ -115,8 +116,7 @@ describe BibURI do
                         :title => "HS – 2 : W ESTERN O FFSHOOTS : 1500 – 2001 ( Australia , Canada , New Zealand , and the United States )",
                         :volume => "2001",
                         :isbn => "9264022619",
-                        :url => "http://www.mendeley.com/research/hs-2-w-estern-o-ffshoots-1500-2001-australia-canada-new-zealand-united-states/",
-                        :identifiers => "http://www.mendeley.com/research/hs-2-w-estern-o-ffshoots-1500-2001-australia-canada-new-zealand-united-states/"
+                        :url => "http://www.mendeley.com/research/hs-2-w-estern-o-ffshoots-1500-2001-australia-canada-new-zealand-united-states/"
                     )
                 ],
                 "http://www.citeulike.org/user/bjbraams/article/12683220" => [
@@ -134,6 +134,26 @@ describe BibURI do
                         :issn => "00092614",
                         :url => "http://www.citeulike.org/user/bjbraams/article/12683220",
                         :doi => "10.1016/s0009-2614(02)00988-0"
+                    )
+                ],
+                #"http://www.bioone.org/doi/abs/10.1642/0004-8038(2002)119%5B0897:FTSTTA%5D2.0.CO%3B2" => [
+                #    BibTeX::Entry.new(
+                #
+                #    )
+                #],
+                "http://www.biodiversitylibrary.org/part/87340#/summary" => [
+                    BibTeX::Entry.new(
+                        :identifiers => "info:doi/10.2307/4067078 urn:ISSN:0004-8038 http://www.biodiversitylibrary.org/part/87340 http://www.biodiversitylibrary.org/part/87340#/summary",
+                        :journal => "The Auk",
+                        :pages => "60--66",
+                        :author => "Allen, J A and Brewster, William and Coues, Elliott and Ridgway, Robert and Sage, John H",
+                        :date => "1890",
+                        :year => "1890",
+                        :title => "Second Supplement to the American Ornithologists' Union Check-List of North American Birds",
+                        :volume => "7",
+                        :issn => "0004-8038",
+                        :url => "http://www.biodiversitylibrary.org/part/87340#/summary",
+                        :doi => "10.2307/4067078"
                     )
                 ]
             }
