@@ -163,6 +163,11 @@ module BibURI::Driver::COinS
         bibentry.type = "inproceedings"
     elsif genre == 'report' then
         bibentry.type = "techreport"
+    else
+        # Default to misc.
+        # There is a COinS genre called 'unknown'
+        # which comes here, too.
+        bibentry.type = "misc"
     end 
     
     # Journal title: title, jtitle

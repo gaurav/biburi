@@ -3,7 +3,8 @@
 [![Gem Version](https://badge.fury.io/rb/biburi.png)](http://badge.fury.io/rb/biburi)
 [![Continuous Integration Status][1]][2]
 [![Coverage Status][3]][4]
-[![Dependency Status][5]][6]
+[![CodeClimate][5]][6]
+[![Dependency Status][7]][8]
 
 This is a gem to extract BibTeX information for URIs which refer to bibliographic
 resources, such as DOIs, Biodiversity Heritage Library links, and others.
@@ -11,6 +12,7 @@ resources, such as DOIs, Biodiversity Heritage Library links, and others.
 Currently, BibURI supports the following types of data:
 
  - DOIs (via CrossRef)
+ - Any web page containing one or more [COinS](http://ocoins.info/) spans.
 
 ## Installation
 
@@ -32,7 +34,8 @@ BibURI mainly works out of a single method:
 
     require 'biburi'
 
-    results = BibURI::lookup('doi:10.1038/171737a0')
+    entry = BibURI::lookup('doi:10.1038/171737a0')
+    # => [#<BibTeX::Entry identifiers = info:doi/http://dx.doi.org/10.1038/171737a0 http://dx.doi.org/10.1038/171737a0, journal = Nature, pages = 737--738, author = WATSON, J. D. and CRICK, F. H. C., date = 1953, year = 1953, title = Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid, volume = 171, number = 4356, url = http://dx.doi.org/10.1038/171737a0, doi = 10.1038/171737a0>]
 
 Full documentation is [available online at RubyDoc.org](http://rubydoc.org/github/gaurav/biburi/master/frames).
 
@@ -52,5 +55,7 @@ Use Git Flow to manage releases, and `rake build` to build a gem.
 [2]: http://travis-ci.org/gaurav/biburi
 [3]: https://coveralls.io/repos/gaurav/biburi/badge.png?branch=master
 [4]: https://coveralls.io/r/gaurav/biburi?branch=master
-[5]: https://gemnasium.com/gaurav/biburi.png
-[6]: https://gemnasium.com/gaurav/biburi
+[5]: https://codeclimate.com/github/gaurav/biburi.png?branch=master
+[6]: https://codeclimate.com/github/gaurav/biburi?branch=master
+[7]: https://gemnasium.com/gaurav/biburi.png
+[8]: https://gemnasium.com/gaurav/biburi
