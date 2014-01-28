@@ -62,42 +62,43 @@ describe BibURI do
 
         it "should be able to do COinS lookups" do
             queries = {
-                "http://www.mendeley.com/research/outline-morphometric-approach-identifying-fossil-spiders-preliminary-examination-florissant-formation/" =>
+                "http://www.mendeley.com/research/outline-morphometric-approach-identifying-fossil-spiders-preliminary-examination-florissant-formatio/" =>
                     BibTeX::Entry.new(
                         :type => 'article',
-                        :identifiers => "info:doi/10.1130/2008.2435(07).\nhttp://www.mendeley.com/research/outline-morphometric-approach-identifying-fossil-spiders-preliminary-examination-florissant-formation/",
-                        :journal => "Society", 
+                        :identifiers => "info:doi/10.1130/2008.2435(07).\nhttp://www.mendeley.com/research/outline-morphometric-approach-identifying-fossil-spiders-preliminary-examination-florissant-formatio/",
+                        :journal => "GSA Special Papers", 
                         :pages => "105", 
-                        :author => "Kinchloe Roberts, A and Smith, D M and Guralnick, R P and Cushing, P E and Krieger, J",
+                        :author => "Kinchloe Roberts, A and Smith, D.M. and Guralnick, R.P. and Cushing, P.E. and Krieger, J.",
                         :date => "2008", 
                         :year => "2008",
                         :title => "An outline morphometric approach to identifying fossil spiders: A preliminary examination from the Florissant Formation",
                         :volume => "435", 
                         :number => "303", 
-                        :url => "http://www.mendeley.com/research/outline-morphometric-approach-identifying-fossil-spiders-preliminary-examination-florissant-formation/",
+                        :url => "http://www.mendeley.com/research/outline-morphometric-approach-identifying-fossil-spiders-preliminary-examination-florissant-formatio/",
                         :doi => "10.1130/2008.2435(07)." # This is wrong though
                     ),
                 "http://www.mendeley.com/catalog/big-questions-biodiversity-informatics/" =>
                     BibTeX::Entry.new(
-                        :type => 'article',
+                        :type => 'misc',
                         :identifiers => "info:doi/10.1080/14772001003739369\nhttp://www.mendeley.com/catalog/big-questions-biodiversity-informatics/",
-                        :journal => "Systematics and Biodiversity",
+                        :journal => "",
                         :pages => "159--168",
-                        :author => "Peterson, A Townsend and Knapp, Sandra and Guralnick, Robert and Soberón, Jorge and Holder, Mark T",
+                        :author => "Peterson, A. Townsend and Knapp, Sandra and Guralnick, Robert and Soberón, Jorge and Holder, Mark T.",
                         :date => "2010",
                         :year => "2010",
                         :title => "The big questions for biodiversity informatics",
                         :volume => "8",
                         :number => "2",
-                        :issn => "14772000",
+                        :issn => "1477-2000",
+                        :isbn => "1477-2000",
                         :url => "http://www.mendeley.com/catalog/big-questions-biodiversity-informatics/",
                         :doi => "10.1080/14772001003739369"
                     ),
                 "http://www.mendeley.com/catalog/biodiversity-informatics-automated-approaches-documenting-global-biodiversity-patterns-processes/" => 
                     BibTeX::Entry.new(
                         :type => 'article',
-                        :identifiers => "info:pmid/19129210\nhttp://www.mendeley.com/catalog/biodiversity-informatics-automated-approaches-documenting-global-biodiversity-patterns-processes/",
-                        :journal => "Bioinformatics",
+                        :identifiers => "info:doi/10.1093/bioinformatics/btn659\ninfo:pmid/19129210\nhttp://www.mendeley.com/catalog/biodiversity-informatics-automated-approaches-documenting-global-biodiversity-patterns-processes/",
+                        :journal => "Bioinformatics (Oxford, England)",
                         :pages => "421--428",
                         :author => "Guralnick, Robert and Hill, Andrew",
                         :date => "2009",
@@ -105,20 +106,22 @@ describe BibURI do
                         :title => "Biodiversity informatics: automated approaches for documenting global biodiversity patterns and processes.",
                         :volume => "25",
                         :number => "4",
-                        :url => "http://www.mendeley.com/catalog/biodiversity-informatics-automated-approaches-documenting-global-biodiversity-patterns-processes/"
+                        :issn => "1367-4811",
+                        :isbn => "1367-4803",
+                        :url => "http://www.mendeley.com/catalog/biodiversity-informatics-automated-approaches-documenting-global-biodiversity-patterns-processes/",
+                        :doi => "10.1093/bioinformatics/btn659"
                     ),
                 "http://www.mendeley.com/research/hs-2-w-estern-o-ffshoots-1500-2001-australia-canada-new-zealand-united-states/" => 
                     BibTeX::Entry.new(
                         :type => 'article',
                         :identifiers => "http://www.mendeley.com/research/hs-2-w-estern-o-ffshoots-1500-2001-australia-canada-new-zealand-united-states/",
-                        :journal => "Work",
+                        :journal => "",
                         :pages => "71--90",
                         :author => "Offshoots, Western",
                         :date => "2001",
                         :year => "2001",
                         :title => "HS – 2 : W ESTERN O FFSHOOTS : 1500 – 2001 ( Australia , Canada , New Zealand , and the United States )",
                         :volume => "2001",
-                        :isbn => "9264022619",
                         :url => "http://www.mendeley.com/research/hs-2-w-estern-o-ffshoots-1500-2001-australia-canada-new-zealand-united-states/"
                     ),
                 "http://www.citeulike.org/user/bjbraams/article/12683220" => 
