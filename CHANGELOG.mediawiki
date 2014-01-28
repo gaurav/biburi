@@ -1,5 +1,8 @@
 = BibURI Changelog =
 
+* 0.1.1 (January 27, 2014)
+** Fixed a minor bug: COinS genres we can't figure out will be given to BibTeX as '@misc'.
+
 * 0.1.0 (October 4, 2013)
 ** MAJOR CHANGE: lookup() now returns a single BibTeX::Entry object, instead of an Array. One driver supports lookup_all() to return all entries.
 
