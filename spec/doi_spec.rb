@@ -48,7 +48,7 @@ describe BibURI::Driver::DOI do
             queries = {
                 "doi:10.1038/171737a0" =>
                     BibTeX::Entry.new(
-                        :type => 'article',
+                        :bibtex_type => :article,
                         :identifiers => "info:doi/http://dx.doi.org/10.1038/171737a0\nhttp://dx.doi.org/10.1038/171737a0",
                         :journal => "Nature",
                         :pages => "737--738",

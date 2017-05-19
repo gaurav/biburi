@@ -23,7 +23,7 @@ describe BibURI do
             queries = {
                 "doi:10.1038/171737a0" =>
                     BibTeX::Entry.new(
-                        :type => 'article',
+                        :bibtex_type => :article,
                         :identifiers => "info:doi/http://dx.doi.org/10.1038/171737a0\nhttp://dx.doi.org/10.1038/171737a0",
                         :journal => "Nature",
                         :pages => "737--738",
@@ -38,7 +38,7 @@ describe BibURI do
                     ),
                 "http://dx.doi.org/10.1111/j.1096-0031.2010.00329.x" =>
                     BibTeX::Entry.new({
-                        :type => 'article',
+                        :bibtex_type => :article,
                         "identifiers" => "info:doi/http://dx.doi.org/10.1111/j.1096-0031.2010.00329.x\nhttp://dx.doi.org/10.1111/j.1096-0031.2010.00329.x",
                         "journal" => "Cladistics", 
                         "pages" => "171--180",
@@ -62,10 +62,10 @@ describe BibURI do
 
         it "should be able to do COinS lookups" do
             queries = {
-                "http://www.mendeley.com/research/outline-morphometric-approach-identifying-fossil-spiders-preliminary-examination-florissant-formatio/" =>
+                "https://www.mendeley.com/research-papers/outline-morphometric-approach-identifying-fossil-spiders-preliminary-examination-florissant-formatio/" =>
                     BibTeX::Entry.new(
-                        :type => 'article',
-                        :identifiers => "info:doi/10.1130/2008.2435(07).\nhttp://www.mendeley.com/research/outline-morphometric-approach-identifying-fossil-spiders-preliminary-examination-florissant-formatio/",
+                        :bibtex_type => :article,
+                        :identifiers => "info:doi/10.1130/2008.2435(07).\nhttp://www.mendeley.com/research-papers/outline-morphometric-approach-identifying-fossil-spiders-preliminary-examination-florissant-formatio/",
                         :journal => "GSA Special Papers", 
                         :pages => "105", 
                         :author => "Kinchloe Roberts, A and Smith, D.M. and Guralnick, R.P. and Cushing, P.E. and Krieger, J.",
@@ -74,12 +74,12 @@ describe BibURI do
                         :title => "An outline morphometric approach to identifying fossil spiders: A preliminary examination from the Florissant Formation",
                         :volume => "435", 
                         :number => "303", 
-                        :url => "http://www.mendeley.com/research/outline-morphometric-approach-identifying-fossil-spiders-preliminary-examination-florissant-formatio/",
+                        :url => "http://www.mendeley.com/research-papers/outline-morphometric-approach-identifying-fossil-spiders-preliminary-examination-florissant-formatio/",
                         :doi => "10.1130/2008.2435(07)." # This is wrong though
                     ),
                 "http://www.mendeley.com/catalog/big-questions-biodiversity-informatics/" =>
                     BibTeX::Entry.new(
-                        :type => 'misc',
+                        :bibtex_type => :misc,
                         :identifiers => "info:doi/10.1080/14772001003739369\nhttp://www.mendeley.com/catalog/big-questions-biodiversity-informatics/",
                         :journal => "",
                         :pages => "159--168",
@@ -96,7 +96,7 @@ describe BibURI do
                     ),
                 "http://www.mendeley.com/catalog/biodiversity-informatics-automated-approaches-documenting-global-biodiversity-patterns-processes/" => 
                     BibTeX::Entry.new(
-                        :type => 'article',
+                        :bibtex_type => :article,
                         :identifiers => "info:doi/10.1093/bioinformatics/btn659\ninfo:pmid/19129210\nhttp://www.mendeley.com/catalog/biodiversity-informatics-automated-approaches-documenting-global-biodiversity-patterns-processes/",
                         :journal => "Bioinformatics (Oxford, England)",
                         :pages => "421--428",
@@ -113,7 +113,7 @@ describe BibURI do
                     ),
                 "http://www.mendeley.com/research/hs-2-w-estern-o-ffshoots-1500-2001-australia-canada-new-zealand-united-states/" => 
                     BibTeX::Entry.new(
-                        :type => 'article',
+                        :bibtex_type => :article,
                         :identifiers => "http://www.mendeley.com/research/hs-2-w-estern-o-ffshoots-1500-2001-australia-canada-new-zealand-united-states/",
                         :journal => "",
                         :pages => "71--90",
@@ -126,7 +126,7 @@ describe BibURI do
                     ),
                 "http://www.citeulike.org/user/bjbraams/article/12683220" => 
                     BibTeX::Entry.new(
-                        :type => 'article',
+                        :bibtex_type => :article,
                         :identifiers => "info:doi/10.1016/s0009-2614(02)00988-0\nhttp://www.citeulike.org/user/bjbraams/article/12683220",
                         :journal => "Chemical Physics Letters",
                         :pages => "520--524",
@@ -147,7 +147,7 @@ describe BibURI do
                 #    ),
                 "http://www.biodiversitylibrary.org/part/87340#/summary" => 
                     BibTeX::Entry.new(
-                        :type => 'article',
+                        :bibtex_type => :article,
                         :identifiers => "info:doi/10.2307/4067078\nurn:ISSN:0004-8038\nhttp://www.biodiversitylibrary.org/part/87340\nhttp://www.biodiversitylibrary.org/part/87340#/summary",
                         :journal => "The Auk",
                         :pages => "60--66",
